@@ -23,6 +23,7 @@ $imap_cl->select("INBOX") or die "Could not select INBOX folder: ", $imap_cl->La
 my @em_messages = $imap_cl->search("FROM", $sender, "UNSEEN");
 
 foreach my $msg_id (@em_messages) {
+    my $whole_message = "";
     my $raw_message = $imap_cl->message_string($msg_id);
 
     my $email_mime = Email::MIME->new($raw_message);
@@ -37,13 +38,11 @@ foreach my $msg_id (@em_messages) {
 
     my $subject = $imap_cl->subject($msg_id);
     my $from = $imap_cl->get_header($msg_id, 'From');
-    #my $body = $imap_cl->body_string($msg_id);
+    $from =~ m/(.*?)\</gm;
     $imap_cl->deny_seeing($msg_id); #Keep messages in UNSEEN status after script read them
 
-    print "From: $from\n";
-    print "Subject: $subject\n";
-    #print "Body: $body\n\n";
-    print $text_body;
+    $whole_message .="From: $1\n\n"."Subject: $subject\n\n".$text_body;
+    print $whole_message;
 }
 
 $imap_cl->logout;
