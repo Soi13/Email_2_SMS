@@ -4,6 +4,14 @@ use warnings;
 use Mail::IMAPClient;
 use IO::Socket::SSL;
 use Email::MIME;
+use HTTP::Tiny;
+
+#SMS gate API
+my $sms_gate_API = "";
+
+#Let's create HTTP::Tiny client
+my $http = HTTP::Tiny->new;
+my $url = "https://textbelt.com/text";
 
 #Let's define Gmail IMAP server
 my $imap_srv = "imap.gmail.com";
@@ -32,17 +40,36 @@ foreach my $msg_id (@em_messages) {
     for my $part ($email_mime->parts) {
         if ($part->content_type =~ m{text/plain}i) {
             $text_body = $part->body_str;
-            last;  # Exit the loop after finding the plain text part
+            last;
         }
     }
 
     my $subject = $imap_cl->subject($msg_id);
     my $from = $imap_cl->get_header($msg_id, 'From');
     $from =~ m/(.*?)\</gm;
+    my $from_name = $1;
+    #$text_body =~ s/<(.+)>//gm;
+    #$text_body =~ s/\w+@\w+\.\w+//gm;
+    $text_body =~ s/sincerely.*//gmsi;
     $imap_cl->deny_seeing($msg_id); #Keep messages in UNSEEN status after script read them
 
-    $whole_message .="From: $1\n\n"."Subject: $subject\n\n".$text_body;
+    $whole_message .="From: $from_name\n\n"."Subject: $subject\n\n".$text_body;
     print $whole_message;
+
+    #Preparing data for sending text message
+    my $data = {
+        phone => "0000000000",
+        message => $whole_message,
+        key => $sms_gate_API,
+    };
+
+    my $response = $http->post_form($url, $data);
+
+    if ($response->{success}) {
+        print "Response: ", $response->{content}, "\n";
+    } else {
+        die "HTTP POST error: $response->{status} $response->{reason}";
+    }
 }
 
 $imap_cl->logout;
