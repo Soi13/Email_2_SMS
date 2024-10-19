@@ -1,0 +1,16 @@
+Response: {"success":true,"textId":"121141729282286431","quotaRemaining":41}
+Response: {"success":true,"textId":"121661729283112254","quotaRemaining":40} : 2024-10-18 20:25:07
+Response: {"success":true,"textId":"121781729283313342","quotaRemaining":39} : 2024-10-18 13:28:31
+Response: {"success":true,"textId":"121811729283363375","quotaRemaining":38} : 2024-10-18 13:29:21
+Response: {"success":true,"textId":"121941729283484322","quotaRemaining":37} : 2024-10-18 13:31:21
+Response: {"success":false,"error":"Message too long: 1024 chars max."} : 2024-10-18 13:32:24
+Response: {"success":true,"textId":"122081729283673370","quotaRemaining":36} : 2024-10-18 13:34:29
+Response: {"success":false,"error":"Invalid phone number or bad request. If your phone number contains a +, please check that you are URL encoding it properly."} : 2024-10-18 13:40:28
+Response: {"success":false,"error":"Invalid phone number or bad request. If your phone number contains a +, please check that you are URL encoding it properly."} : 2024-10-18 13:41:55
+Response: {"success":false,"error":"The hosted Textbelt endpoint now requires a 'key' param. Please go to https://textbelt.com to sign up for an API key or use the key \"textbelt\" for a free SMS per day. You may also choose to self-host and send unlimited SMS."} : 2024-10-18 13:42:49
+Response: {"success":false,"error":"Invalid phone number or bad request. If your phone number contains a +, please check that you are URL encoding it properly."} : 2024-10-18 13:43:41
+Response: {"success":true,"textId":"123431729284603646","quotaRemaining":35} : 2024-10-18 13:50:02
+Response: {"success":true,"textId":"123471729284677542","quotaRemaining":34} : 2024-10-18 13:51:16
+Response: {"success":true,"textId":"123731729284933179","quotaRemaining":33} : 2024-10-18 13:55:31
+Response: {"success":true,"textId":"124241729285479972","quotaRemaining":32} : 2024-10-18 14:04:37
+Response: {"success":true,"textId":"124401729285736484","quotaRemaining":31} : 2024-10-18 14:08:55
